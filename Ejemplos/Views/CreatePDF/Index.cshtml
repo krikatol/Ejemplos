@@ -1,0 +1,20 @@
+﻿@model Ejemplos.Models.Alumno
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;//"~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <b>Nombre: </b>@Model.Nombre <br />
+    <b>Ciudad: </b>@Model.Ciudad
+</div>
+<br />
+
+@foreach (var materia in Model.materias) 
+{
+    <div style="border: 1px solid #666; padding: 20px;">
+        <b>Materia: </b>@materia.Nombre<br />
+        <b>Calificacion: </b>@materia.Calificacion
+    </div>
+}
+

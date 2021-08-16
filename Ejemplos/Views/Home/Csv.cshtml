@@ -1,0 +1,57 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Data;
+@model DataTable
+@{
+    ViewData["Title"] = "Csv";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container w-50 my-3 p-5 bg-white rounded">
+    <div class="row">
+        <div class="col align-items-center">
+            <form asp-controller="Home" asp-action="Csv" method="post" enctype="multipart/form-data">
+                <input type="file" name="postedFile" class="form-control" accept=".csv" onchange="validate_fileupload(this.value);" />
+                <br />
+                <input type="submit" id="subir" name="Subir" value="Subir" class="btn btn-dark" disabled />
+                <!-- <input type="button" id="quitar" name="Quitar" value="Quitar" class="btn btn-dark" asp-area="" asp-controller="Home" asp-action="Csv"/> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (Model != null)
+{
+    <div class="container mt-3 mb-5 p-5 bg-white rounded">
+        <div class="row">
+            <div class="col">
+                <a id="quitar" class="btn btn-dark mb-3" asp-controller="Home" asp-action="Csv">Quitar Tabla</a>
+                <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            @foreach (DataColumn dc in Model.Columns)
+                            {
+                                <th>@dc.ColumnName</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow dr in Model.Rows)
+                        {
+                            <tr>
+                                @foreach (DataColumn dc in Model.Columns)
+                                {
+                                    <td>@dr[dc.ColumnName]</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+
+<script src="~/js/uploadFile.js" asp-append-version="true"></script>
+<script src="~/js/Datatables.js" asp-append-version="true"></script>
+

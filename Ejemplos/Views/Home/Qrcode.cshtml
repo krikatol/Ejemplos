@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Qrcode";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container w-50 my-3 p-5 bg-white rounded">
+    <div class="row">
+        <div class="col d-flex align-items-center">
+            <input id="text" name="qrtxt" class="form-control" type="text" value="" style="width: 100%;" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            <div id="qrcode" style="width:100px; height:100px; margin-top:15px;" class="mx-auto"></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/qrcode.js" asp-append-version="true"></script>
+
